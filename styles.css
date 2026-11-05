@@ -109,7 +109,7 @@ a:hover {
 }
 
 /* 12. Pseudoelement ::before: Dibuixa un punt de llum verd abans del text en la classe .disponibilitat. */
-::before .disponibilitat {
+.disponibilitat::before {
   content: "";
   display: inline-block;
   width: 10px;
@@ -127,7 +127,7 @@ a:hover {
 }
 
 /* 14. Pseudoelement ::before: Genera un quadrat groc neó abans dels elements amb la classe .sobre-titol. */
-::before .sobre-titol {
+.sobre-titol::before {
   content: "";
   display: inline-block;
   width: 12px;
@@ -137,7 +137,7 @@ a:hover {
 }
 
 /* 15. Pseudoelement ::after: Superposa un símbol d'asterisc al centre de la classe .forma-gran. */
-::after .forma-gran {
+.forma-gran::after {
   content: "✳";
   position: absolute;
   color: var(--text-dark);
@@ -179,7 +179,7 @@ a:hover {
 }
 
 /* 20. Paràgraf .descripcio-projecte situat immediatament després de .info-projecte. */
-.info-projecte + .descripcio-projecte p {
+.info-projecte + .descripcio-projecte {
   margin-top: 0.75rem;
   color: var(--text-dark);
   font-size: 0.9rem;
@@ -193,17 +193,17 @@ a:hover {
 }
 
 /* 22. Primer element <li> fill directe de la llista amb la classe .llista-valors. */
-.llista-valors + li {
+.llista-valors > li:first-of-type {
   border-top: 3px solid var(--bg-accent);
 }
 
 /* 23. Pseudoclasse de Contingut :empty: Amaga l'element de la classe .missatge-buit quan no té contingut. */
-:empty .missatge-buit {
+.missatge-buit:empty {
   display: none;
 }
 
 /* 24. Pseudoelement ::before: Dibuixa un marc quadrat al voltant del contingut de la classe .manifest-grafic. */
-:before .manifest-grafic {
+.manifest-grafic::before {
   content: "";
   position: absolute;
   width: 290px;
@@ -212,7 +212,7 @@ a:hover {
 }
 
 /* 25. Últim element <li> fill directe de la llista amb la classe .llista-valors. */
-.llista-valors > li:last-child {
+.llista-valors > li:last-of-type {
   border-bottom: 1px solid var(--border-stiff);
   padding-bottom: 1.5rem;
 }
@@ -225,7 +225,7 @@ a:hover {
 }
 
 /* 27. Pseudoclasse estructural :nth-of-type(): Canvia a blau elèctric el .servei-numero del tercer article de servei. */
-.servei-numero servei:nth-of-type(3) {
+.servei:nth-of-type(3) .servei-numero {
   color: var(--accent-blue);
   font-weight: 900;
 }
@@ -239,7 +239,7 @@ a[href$="cat"]{
 }
 
 /* 29. Pseudoclasse de Formulari/Focus (:focus): Aplica l'ombra blava quan els camps dins de .formulari tenen el focus. */
-.formulari:hover {
+.formulari:focus {
   outline: none;
   border-color: var(--text-dark);
   box-shadow: 4px 4px 0px var(--accent-blue);
@@ -262,7 +262,7 @@ a[href$="cat"]{
 .formulari:required {
   border-left: 4px solid var(--text-dark);
 }
-.formulari:not(reuired) {
+.formulari:not(required) {
   border-style: dashed;
 }
 
@@ -275,7 +275,7 @@ input:invalid {
 }
 
 /* 34. Pseudoclasse de Formulari :placeholder-shown: Manten el fons blanc als <input> mentre no tenen text entrat. */
-:placeholder-shown input:empty {
+input:placeholder-shown {
   background-color: #ffffff;
 }
 
@@ -305,35 +305,35 @@ button:disabled {
 }
 
 /* 38. Pseudoclasse Lògica :not(): Redueix l'opacitat dels enllaços <a> de .xarxes excepte del que té la classe .xarxa-principal. */
-.xarxes a :not(.xarxa-principal) {
+.xarxes a:not(.xarxa-principal) {
   opacity: 0.4;
 }
 
 /* 39. Pseudoclasse Lògica :where(): Anul·la els marges verticals dels títols <h2> i <h3> dins de la classe .peu. */
-.peu :is(h2, h3) {
+.peu :where(h2, h3) {
   margin: 0;
 }
 
 /* 40. Pseudoclasse d'Estat d'Enllaç :visited: Defineix el color per als enllaços <a> del .peu ja visitats. */
-.peu a:visited {
+.peu:visited a {
   color: var(--text-muted);
 }
 
 /* 41. Afegeix fletxa neó als enllaços <a> amb href començat per "https". */
-a[href$="https"] {
+a[href^="https"] {
   content: " ↗";
   font-weight: 900;
   color: var(--bg-accent);
 }
 
 /* 42. Pseudoclasse de Contenidor :has(): Aplica ombra de bloc a la classe .projecte que conté l'atribut data-estat="destacat". */
-.projecte[data-estat="destacat"] {
+.projecte:has([data-estat="destacat"]) {
   border: 2px solid var(--text-dark);
   box-shadow: var(--shadow-block);
 }
 
 /* 43. Pseudoclasse Lògica :not() amb Atribut: Afegeix l'etiqueta "RAW" als .projecte que NO tenen l'atribut data-estat. */
-.projecte:not[data-estat] {
+.projecte:not([data-estat]) {
   content: "RAW";
   font-size: 0.7rem;
   font-weight: 900;
